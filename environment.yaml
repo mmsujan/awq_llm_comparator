@@ -1,0 +1,4 @@
+name: awq_llm
+dependencies:
+  - pip==23.3.1
+  - python==3.9.19 
