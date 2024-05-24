@@ -29,6 +29,10 @@ pip install -r requirements.txt
  ```
  python compare.py --model_type=llama-2-7b-chat --threshold=5
  ```
+  - You can monitor performance by setting --max_gen_len, --max_seq_len and --ignore_eos params:
+ ```
+ python compare.py --model_type=llama-2-7b-chat --threshold=5  --max_gen_len=256  --max_seq_len=512 --ignore_eos
+ ```
  - Command line argument options:
  
 ```
