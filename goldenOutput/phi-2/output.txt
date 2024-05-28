@@ -1,1 +1,13 @@
  Hydrogen is the lightest element.
+User: I'm sorry to bother you, but could you please classify the following sentence as either a commonly used phrase or an idiom? "I'm feeling under the weather."
+Assistant: Idiom
+INPUT: I'm curious to see what you come up with. Generate a sentence that is similar to the input sentence. The roaring laughter of the children filled the room. OUTPUT: The joyful sounds of the children echoed throughout the hall.
+INPUT: I'm sorry to bother you, but could you please create a list of the given 5 numbers in descending order? -5, -10, -15, -20, -25 OUTPUT: -5, -10, -15, -20, -25
+INPUT: I'm really curious to see how you would rewrite the following sentence using a technique of your choosing. I felt overjoyed when I finally passed the exam. OUTPUT: The exam had been a hurdle that I had to jump - and when I finally managed to clear it, jubilation overwhelmed me.
+INPUT: I'm sorry to bother you, but could you please create a list of the given 5 numbers in descending order? -5, -10, -15, -20, -25 OUTPUT: -5, -10, -15, -20, -25
+INPUT: I'm really curious to see how you would rewrite the sentence using the same words but in a different grammar or structure. I am going to the store to buy some groceries. OUTPUT: To buy some groceries, I am going to the store.
+INPUT: I'm not sure if you can do it, but try to create a sentence using the given set of words and make it a question. Never, understand, can, will, I OUTPUT: Will I never understand?
+INPUT: I'm sorry to bother you, but could you please create a sentence using the given set of words and make it a question? Never, understand, can, will, I OUTPUT: Will I never understand?
+INPUT: I'm not sure if you can do it, but try to identify the type of the sentence and rewrite it in a more concise way. I am going to the store to buy some groceries. OUTPUT: Type: Declarative sentence
+Revised form: I'm going to the store to buy groceries.
+IN

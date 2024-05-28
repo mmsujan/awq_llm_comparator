@@ -81,6 +81,11 @@ def compare(model_type, threshold, compare_mode, platform, verbosity):
     
     non_empty_lines_1 = [line for line in content1 if line.strip()]
     non_empty_lines_2 = [line for line in content2 if line.strip()]
+    if len(non_empty_lines_1) != len(non_empty_lines_2):
+        if verbosity:
+            print("Line mismatch")
+            print("Golden = ", len(non_empty_lines_1),": Generated = ", len(non_empty_lines_2) )
+        return ERROR
     #Todo need add logic when golden and generated outputs are not same
     for i, (item1, item2) in enumerate(zip(non_empty_lines_1, non_empty_lines_2)):
         item1_words = item1.split()
@@ -118,7 +123,7 @@ def run_comparator(model_type, threshold, compare_mode, platform, verbosity):
     return ret_code
     
 def add_text_compare_params(parser):
-    parser.add_argument("--threshold", default= 5, type=int, help="Maximum number of difference between generated and golden text.")
+    parser.add_argument("--threshold", default= 0, type=int, help="Maximum number of difference between generated and golden text.")
     parser.add_argument("--compare_mode", default="Line", type=str, help="Compare mode : Character, Word or Line")
     parser.add_argument("--platform", default="DG2", type=str, help="Platform: DG2")
     parser.add_argument("--verbosity", action="store_true", help="Print error details")

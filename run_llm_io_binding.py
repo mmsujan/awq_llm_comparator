@@ -19,6 +19,7 @@ np.random.seed(1024)
 def run_llm_io_binding(
     model_type: str,
     prompt: str,
+    prompt_size: int = 256,
     max_seq_len: int = 2048,
     max_gen_len: int = 256,
     device: str = "dml",
@@ -67,6 +68,9 @@ def run_llm_io_binding(
 
     tokens = tokenizer.apply_chat_template([{"role": "user", "content": prompt}], return_tensors="np")
     tokens = np.asarray(tokens, dtype=np.int64)
+    if model_type == "llama-2-7b-chat" or  model_type == " mistral-7b-chat":
+        tokens = np.resize(tokens, (1, prompt_size))
+    
     tokens = onnxruntime.OrtValue.ortvalue_from_numpy(tokens, device)
     tokens_increment = onnxruntime.OrtValue.ortvalue_from_shape_and_type((1, 1), np.int64, device)
 
@@ -92,7 +96,7 @@ def run_llm_io_binding(
     llm_io_binding.bind_ortvalue_input("tokens_increment", tokens_increment)
 
     before_time = time.perf_counter()
-
+    before_time_first_token = time.perf_counter()  
     # Iteratively generate tokens.
     output_tokens = []
     for idx in range(max_gen_len):
@@ -130,17 +134,26 @@ def run_llm_io_binding(
         if idx == 0:
             llm_io_binding.bind_cpu_input("use_cache_branch", np.ones([1], dtype=np.bool_))
             llm_io_binding.bind_output("logits", device)
+            after_time_first_token = time.perf_counter()
 
         past_seq_len = seq_len
         seq_len += 1
 
     after_time = time.perf_counter()
     duration = after_time - before_time
-    tokens_per_second = idx / duration
+    #tokens_per_second = idx / duration
+    first_token_latency = after_time_first_token - before_time_first_token
+    tokens_per_second = (idx - 1) / (duration - first_token_latency)
+    
+    if model_type == "phi-2":
+        tokens_per_second = idx / duration
 
     # Only print the tokens/s when ignore_eos is provided for benchmarking purposes
     if ignore_eos:
-        print(f"Execution took {duration:0.4f} seconds (generated {tokens_per_second:0.2f} tokens per second)")
+        if model_type == "llama-2-7b-chat" or  model_type == "mistral-7b-chat":
+            print(f"Execution took {duration:0.4f} seconds (generated {tokens_per_second:0.2f} tokens per second for 2nd+ token). First token latency: {first_token_latency:0.2f} seconds.")
+        else:
+            print(f"Execution took {duration:0.4f} seconds (generated {tokens_per_second:0.2f} tokens per second)")
 
     output_str = tokenizer.decode(output_tokens, skip_special_tokens=True)
     
@@ -152,6 +165,7 @@ def run_llm_io_binding(
     
 def llm_params(parser):
     parser.add_argument("--prompt", type=str, default="What is the lightest element?")
+    parser.add_argument("--input_seq_len", type=int, default=256)
     parser.add_argument("--max_seq_len", type=int, default=2048)
     parser.add_argument("--max_gen_len", type=int, default=256)
     parser.add_argument("--ignore_eos", action="store_true")
@@ -165,16 +179,20 @@ def llm_params(parser):
         type=str,
     )
 def llm_main(args):
+    if args.input_seq_len == 0:
+        print("Input seq len cant be 0!")
+    else:
     
-    run_llm_io_binding(
-        args.model_type,
-        args.prompt,
-        args.max_seq_len,
-        args.max_gen_len,
-        args.device,
-        args.device_id,
-        args.ignore_eos,
-    )
+        run_llm_io_binding(
+            args.model_type,
+            args.prompt,
+            args.input_seq_len,
+            args.max_seq_len,
+            args.max_gen_len,
+            args.device,
+            args.device_id,
+            args.ignore_eos,
+        )
 
 """
 if __name__ == "__main__":

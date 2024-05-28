@@ -31,8 +31,10 @@ pip install -r requirements.txt
  ```
   - You can monitor performance by setting --max_gen_len, --max_seq_len and --ignore_eos params:
  ```
- python compare.py --model_type=llama-2-7b-chat --threshold=5  --max_gen_len=256  --max_seq_len=512 --ignore_eos
+ python compare.py --model_type=llama-2-7b-chat --input_seq_len=256 --max_gen_len=512 --max_seq_len=512 --ignore_eos
  ```
+ Note : Model Phi-2 shows latency and throughput information only
+ 
  - Command line argument options:
  
 ```
