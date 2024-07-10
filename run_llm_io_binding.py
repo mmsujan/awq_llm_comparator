@@ -145,15 +145,15 @@ def run_llm_io_binding(
     first_token_latency = after_time_first_token - before_time_first_token
     tokens_per_second = (idx - 1) / (duration - first_token_latency)
     
-    if model_type == "phi-2":
-        tokens_per_second = idx / duration
+    #if model_type == "phi-2":
+    #    tokens_per_second = idx / duration
 
     # Only print the tokens/s when ignore_eos is provided for benchmarking purposes
     if ignore_eos:
-        if model_type == "llama-2-7b-chat" or  model_type == "mistral-7b-chat":
-            print(f"Execution took {duration:0.4f} seconds (generated {tokens_per_second:0.2f} tokens per second for 2nd+ token). First token latency: {first_token_latency:0.2f} seconds.")
-        else:
-            print(f"Execution took {duration:0.4f} seconds (generated {tokens_per_second:0.2f} tokens per second)")
+        #if model_type == "llama-2-7b-chat" or  model_type == "mistral-7b-chat":
+        print(f"Execution took {duration:0.4f} seconds (generated {tokens_per_second:0.2f} tokens per second for 2nd+ token). First token latency: {first_token_latency:0.2f} seconds.")
+        #else:
+        #    print(f"Execution took {duration:0.4f} seconds (generated {tokens_per_second:0.2f} tokens per second)")
 
     output_str = tokenizer.decode(output_tokens, skip_special_tokens=True)
     
@@ -166,7 +166,7 @@ def run_llm_io_binding(
 def llm_params(parser):
     parser.add_argument("--prompt", type=str, default="What is the lightest element?")
     parser.add_argument("--input_seq_len", type=int, default=256)
-    parser.add_argument("--max_seq_len", type=int, default=2048)
+    parser.add_argument("--max_seq_len", type=int, default=512)
     parser.add_argument("--max_gen_len", type=int, default=256)
     parser.add_argument("--ignore_eos", action="store_true")
     parser.add_argument("--device", type=str, choices=["dml", "cuda"], default="dml")

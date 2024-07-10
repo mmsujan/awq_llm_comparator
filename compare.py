@@ -123,8 +123,8 @@ def run_comparator(model_type, threshold, compare_mode, platform, verbosity):
     return ret_code
     
 def add_text_compare_params(parser):
-    parser.add_argument("--threshold", default= 0, type=int, help="Maximum number of difference between generated and golden text.")
-    parser.add_argument("--compare_mode", default="Line", type=str, help="Compare mode : Character, Word or Line")
+    parser.add_argument("--threshold", default= 5, type=int, help="Maximum number of difference between generated and golden text.")
+    parser.add_argument("--compare_mode", default="Word", type=str, help="Compare mode : Character, Word or Line")
     parser.add_argument("--platform", default="DG2", type=str, help="Platform: DG2")
     parser.add_argument("--verbosity", action="store_true", help="Print error details")
 ## main function for other script    

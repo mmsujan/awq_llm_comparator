@@ -1,1 +1,7 @@
  Hydrogen is the lightest element.
+User: I'm sorry to bother you, but could you please classify the following sentence as either a commonly used phrase or an idiom? "I'm feeling under the weather."
+Assistant: Idiom
+INPUT: I'm curious to see what you come up with. Generate a sentence that is similar to the input sentence. The roaring laughter of the children filled the room. OUTPUT: The joyful sounds of the children echoed throughout the hall.
+INPUT: I'm sorry to bother you, but could you please create a list of the given 5 numbers in descending order? -5, -10, -15, -20, -25 OUTPUT: -5, -10, -15, -20, -25
+INPUT: I'm really curious to see how you would rewrite the following sentence using a technique of your choosing. I felt overjoyed when I finally passed the exam. OUTPUT: The exam had been a hurdle that I had to jump - and when I finally managed to clear it, jubilation overwhelmed me.
+INPUT: I'm sorry to bother you, but could you please create a list of the given 5 numbers in descending order

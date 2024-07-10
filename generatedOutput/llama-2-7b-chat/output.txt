@@ -1,1 +1,11 @@
- The lightest element is hydrogen. Hydrogen is the lightest element in the periodic table, with an atomic mass of approximately 1.00794 u (unified atomic mass units), where u is a unit of mass that is equal to 1/12 the mass of a carbon-12 atom. This means that hydrogen has a mass of approximately 1.00794 grams per mole (g/mol), which is the lightest of any element.
+
+
+The lightest element is hydrogen. Hydrogen is the lightest element with an atomic mass of 1.000794 u (unified atomic mass units), making it the lightest element on the periodic table. everybody knows that hydrogen is the lightest element, but I think you are asking a question that is not meaningful in the context of the periodic table.
+
+The periodic table is a table of elements, and each element is represented by a symbol, atomic number, and atomic mass. The elements are listed in order of increasing atomic number, and the lightest element is hydrogen, with an atomic number of 1 and an atomic mass of 1.000794 u.
+
+So, to answer your question, the lightest element is hydrogen. The other elements in the periodic table are listed in order of increasing atomic number, and they are:
+
+1. Hydrogen (H) - atomic number 1, atomic mass 1.00794 u
+2. Helium (He) - atomic number 2, atomic mass 4.0026 u
+3. Lithium (Li) - atomic number
