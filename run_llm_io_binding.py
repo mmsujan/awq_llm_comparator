@@ -168,7 +168,7 @@ def llm_params(parser):
     parser.add_argument("--input_seq_len", type=int, default=256)
     parser.add_argument("--max_seq_len", type=int, default=512)
     parser.add_argument("--max_gen_len", type=int, default=256)
-    parser.add_argument("--ignore_eos", action="store_true")
+    parser.add_argument("--ignore_eos", action="store_false")
     parser.add_argument("--device", type=str, choices=["dml", "cuda"], default="dml")
     parser.add_argument("--device_id", type=int, default=0)
     parser.add_argument(
